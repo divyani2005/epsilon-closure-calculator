@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Epsilon-Closure Calculator</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            ε-NFA <span>Calculator</span>
+        </div>
+
+        <div class="nav-links">
+            <a href="#calculator">Calculator</a>
+            <a href="#about">About</a>
+        </div>
+
+    </nav>
+
+
+    <!-- Hero Section -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="badge">
+                THEORY OF COMPUTATION
+            </div>
+
+            <h1>
+                Epsilon-Closure
+                <span>Calculator</span>
+            </h1>
+
+            <p>
+                Calculate the mathematically complete
+                ε-closure of every state in an ε-NFA.
+            </p>
+
+            <a href="#calculator"
+               class="hero-button">
+                Start Calculating →
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- Calculator -->
+
+    <main id="calculator"
+          class="main-container">
+
+        <div class="section-heading">
+
+            <p class="small-title">
+                ε-NFA ANALYZER
+            </p>
+
+            <h2>
+                Build Your Transition Matrix
+            </h2>
+
+            <p>
+                Enter the number of states and define
+                the ε-transitions between them.
+            </p>
+
+        </div>
+
+
+        <!-- State Input -->
+
+        <div class="card">
+
+            <div class="card-title">
+
+                <div class="step-number">
+                    01
+                </div>
+
+                <div>
+                    <h3>
+                        Number of States
+                    </h3>
+
+                    <p>
+                        Define the states of your ε-NFA.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="state-control">
+
+                <input
+                    type="number"
+                    id="stateCount"
+                    value="4"
+                    min="1"
+                    max="10"
+                >
+
+                <button
+                    onclick="createMatrix()"
+                    class="primary-button">
+
+                    Create Matrix
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- Matrix -->
+
+        <div class="card">
+
+            <div class="card-title">
+
+                <div class="step-number">
+                    02
+                </div>
+
+                <div>
+                    <h3>
+                        ε-Transition Matrix
+                    </h3>
+
+                    <p>
+                        Enter 1 when an ε-transition exists,
+                        otherwise enter 0.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div id="matrixContainer"
+                 class="matrix-container">
+            </div>
+
+
+            <div class="button-row">
+
+                <button
+                    onclick="loadExample()"
+                    class="secondary-button">
+
+                    Load Example
+
+                </button>
+
+                <button
+                    onclick="clearMatrix()"
+                    class="secondary-button">
+
+                    Reset
+
+                </button>
+
+                <button
+                    onclick="calculateClosure()"
+                    class="calculate-button">
+
+                    Calculate ε-Closure →
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- Results -->
+
+        <div class="card">
+
+            <div class="card-title">
+
+                <div class="step-number">
+                    03
+                </div>
+
+                <div>
+                    <h3>
+                        ε-Closure Results
+                    </h3>
+
+                    <p>
+                        Complete closure for every state.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div id="error"></div>
+
+            <div id="results">
+
+                <div class="empty-state">
+
+                    <div class="empty-icon">
+                        ε
+                    </div>
+
+                    <p>
+                        Your results will appear here.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Graph -->
+
+        <div class="card">
+
+            <div class="card-title">
+
+                <div class="step-number">
+                    04
+                </div>
+
+                <div>
+                    <h3>
+                        ε-NFA Visualization
+                    </h3>
+
+                    <p>
+                        Visual representation of your
+                        epsilon transitions.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div id="graph"
+                 class="graph-container">
+
+                <p class="graph-placeholder">
+                    Calculate the closure to generate
+                    the graph.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- Information -->
+
+        <section id="about"
+                 class="info-grid">
+
+            <div class="info-card">
+
+                <div class="info-icon">
+                    ε
+                </div>
+
+                <h3>
+                    What is ε-Closure?
+                </h3>
+
+                <p>
+                    The ε-closure of a state is the set of
+                    all states reachable from that state
+                    using zero or more ε-transitions.
+                </p>
+
+            </div>
+
+
+            <div class="info-card">
+
+                <div class="info-icon">
+                    DFS
+                </div>
+
+                <h3>
+                    Algorithm
+                </h3>
+
+                <p>
+                    The calculator uses graph traversal
+                    with a stack to explore all reachable
+                    states through ε-transitions.
+                </p>
+
+            </div>
+
+
+            <div class="info-card">
+
+                <div class="info-icon">
+                    O
+                </div>
+
+                <h3>
+                    Complexity
+                </h3>
+
+                <p>
+                    The graph traversal takes
+                    O(V + E) time for each state,
+                    where V represents states and E
+                    represents transitions.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+
+    <footer>
+
+        <h3>
+            ε-NFA Epsilon-Closure Calculator
+        </h3>
+
+        <p>
+            Theory of Computation Project
+        </p>
+
+        <p class="footer-small">
+            Built using HTML • CSS • JavaScript
+        </p>
+
+    </footer>
+
+
+    <script src="app.js"></script>
+
+</body>
+
+</html>
